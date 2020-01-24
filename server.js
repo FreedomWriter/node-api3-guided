@@ -1,5 +1,6 @@
 const express = require("express"); // importing a CommonJS module
 const helmet = require("helmet"); // npm i helmet
+const agent = require("./middleware/agent");
 // const morgan = require("morgan"); // nmp i morgan
 const logger = require("./middleware/logger");
 
@@ -11,6 +12,7 @@ server.use(express.json());
 
 server.use(helmet());
 server.use(logger());
+server.use(agent("PostmanRuntime"));
 
 // server.use(morgan("dev"));
 
