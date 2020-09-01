@@ -31,22 +31,9 @@ router.get("/", (req, res) => {
 
 // /api/hubs/:id
 
+//added the key of hub to req in the validate.js file
 router.get("/:id", (req, res) => {
-  Hubs.findById(req.params.id)
-    .then(hub => {
-      if (hub) {
-        res.status(200).json(hub);
-      } else {
-        res.status(404).json({ message: "Hub not found" });
-      }
-    })
-    .catch(error => {
-      // log error to server
-      console.log(error);
-      res.status(500).json({
-        message: "Error retrieving the hub"
-      });
-    });
+  res.status(200).json(req.hub);
 });
 
 router.post("/", checkFor("name"), uppercaser, (req, res) => {
